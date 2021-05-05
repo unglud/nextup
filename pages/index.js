@@ -1,8 +1,17 @@
 import MeetupList from "../components/meetups/MeetupList";
 import MongoClient from "mongodb";
+import { Fragment } from "react";
+import Head from "next/head";
 
 export default function Home(props) {
-  return <MeetupList meetups={props.meetups}></MeetupList>;
+  return (
+    <Fragment>
+      <Head>
+        <title>React Meetups</title>
+      </Head>
+      <MeetupList meetups={props.meetups}></MeetupList>
+    </Fragment>
+  );
 }
 
 export async function getStaticProps() {
@@ -15,9 +24,12 @@ export async function getStaticProps() {
 
   return {
     props: {
-      meetups: meetups.map(({ _id, title, address, image }) =>({
-        title, address, image, id: _id.toString()
-      }))
+      meetups: meetups.map(({ _id, title, address, image }) => ({
+        title,
+        address,
+        image,
+        id: _id.toString(),
+      })),
     },
     revalidate: 10,
   };
