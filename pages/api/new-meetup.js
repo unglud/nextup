@@ -6,16 +6,16 @@ export default async (req, res) => {
     if (req.method === "POST") {
         const data = req.data;
 
-        const client = await MongoClient.connect(
-            process.env.MONGODB_HOST
-        );
-
-        const db = client.db();
-        const meetupsCollection = db.collection("meetups");
-        const result = await meetupsCollection.insertOne(data);
-
-        console.log(`result`, result);
-        client.close();
+        // const client = await MongoClient.connect(
+        //     process.env.MONGODB_HOST
+        // );
+        //
+        // const db = client.db();
+        // const meetupsCollection = db.collection("meetups");
+        // const result = await meetupsCollection.insertOne(data);
+        //
+        // console.log(`result`, result);
+        // client.close();
 
         res.status(201).json({message:'inserted'})
     }
